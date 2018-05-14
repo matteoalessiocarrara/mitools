@@ -1,0 +1,15 @@
+set datafile separator ','
+
+set samples 20000
+set style line 1 linewidth 2 linecolor rgb "cyan"
+set xtics border 3600 rotate
+
+set xdata time
+set timefmt "%s"
+set format x "%Y-%m-%d %H:%M"
+
+set key autotitle columnhead
+plot "0heartrate.csv" every ::630 using 1:2 with impulses, \
+     "0heartrate.csv" every ::630 using 1:2 smooth bezier ls 1
+pause -1
+
