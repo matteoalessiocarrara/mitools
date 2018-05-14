@@ -17,16 +17,17 @@
 
 import sqlite3
 from sys import stdout
-
+import time
 
 def exp(sel, table):
-	print(sel)
+	of = open("%d_%s.csv" %(int(time.time()), table), "w")
+	of.write(sel+"\n")
 	for row in c.execute("SELECT %s FROM %s" % (sel, table)):
 		for i in range(len(row)):
 			col = str(row[i])
 			out = col + ", " if i != (len(row) - 1) else col + "\n"
-			stdout.write(out)
-	stdout.write("\n")
+			of.write(out)
+	of.close()
 	
 
 db = sqlite3.connect("miband")
