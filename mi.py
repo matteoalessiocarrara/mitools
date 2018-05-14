@@ -22,9 +22,9 @@ from sys import stdout
 def exp(sel, table):
 	print(sel)
 	for row in c.execute("SELECT %s FROM %s" % (sel, table)):
-		for col in row:
-			col = str(col)
-			out = col + "\n" if col == str(row[-1]) else col + ", "
+		for i in range(len(row)):
+			col = str(row[i])
+			out = col + ", " if i != (len(row) - 1) else col + "\n"
 			stdout.write(out)
 	stdout.write("\n")
 	
