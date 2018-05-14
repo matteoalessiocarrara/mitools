@@ -20,7 +20,7 @@ from sys import stdout
 import time
 
 def exp(sel, table):
-	of = open("%d_%s.csv" %(int(time.time()), table), "w")
+	of = open("0%s.csv" %(table), "w")
 	of.write(sel+"\n")
 	for row in c.execute("SELECT %s FROM %s" % (sel, table)):
 		for i in range(len(row)):
