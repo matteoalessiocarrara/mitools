@@ -1,0 +1,3 @@
+[submodule "sqlite2csv"]
+	path = sqlite2csv
+	url = ../sqlite2csv
