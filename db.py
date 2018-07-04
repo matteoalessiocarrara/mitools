@@ -33,18 +33,22 @@ from sqlite2csv import sqlite2csv
 # CREATE TABLE `steps` (`time` integer primary key,`intensity` integer,`steps`
 # integer,`category` integer);
 
-items =	[["heartrate", "time, hr"],
-		 ["sleep", "start_time, end_time, deep, light"],
-		 ["steps", "time, intensity, steps, category"]
-		]
+
+# what to export from the database
+# tuple: (tablename, columns)
+tables =[
+            ("heartrate", "time, hr"),
+            ("sleep", "start_time, end_time, deep, light"),
+            ("steps", "time, intensity, steps, category")
+        ]
 
 dbname = argv[1]
 EXPDIR = str(time.time()) + "_exp"
 os.mkdir(EXPDIR)
-ex = sqlite2csv.Exporter(dbname, EXPDIR)
+exporter = sqlite2csv.Exporter(dbname, EXPDIR)
 
-for i in items:
-	ex.run(i[0], i[1])
+for t in tables:
+	exporter.run(t[0], t[1])
 
 
 
